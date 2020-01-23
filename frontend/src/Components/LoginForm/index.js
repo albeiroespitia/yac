@@ -1,5 +1,6 @@
 import React from 'react'
-import { TextField, Button } from '@material-ui/core'
+import {Link} from 'react-router-dom'
+import { TextField, Button, Typography } from '@material-ui/core'
 import styles from './style.module.scss'
 
 const LoginForm = () => {
@@ -10,6 +11,7 @@ const LoginForm = () => {
         className={styles.nickname}
       />
       <Button variant="contained" className={styles.loginButton}> Login </Button>
+      <Typography component="p" className={styles.signupText}> No tienes una cuenta? <Link to="/signup" className={styles.signupLink}>Registrate aqui</Link> </Typography>
     </div>
   )
 }

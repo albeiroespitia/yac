@@ -16,4 +16,17 @@
   .loginButton:hover{
     background-color: #7800F2;
   }
+
+  .signupText{
+    margin-top: 1em;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #230053;
+
+    .signupLink{
+      font-weight: 500;
+      text-decoration: none;
+      color: #230053;
+    }
+  }
 }
