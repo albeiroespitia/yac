@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { TextField, Button, Typography, FormLabel, RadioGroup, FormControlLabel, Radio  } from '@material-ui/core'
+import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio  } from '@material-ui/core'
 import styles from './style.module.scss'
 
 const SignupForm = () => {
