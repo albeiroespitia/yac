@@ -3,6 +3,8 @@ import styles from './style.module.scss'
 import Layout from '../../Layout'
 import Lottie from 'react-lottie';
 import * as animationData from '../../assets/14285-riding-slider-scooter.json'
+import {Typography} from '@material-ui/core'
+import LoginForm from '../../Components/LoginForm'
 
 const defaultOptions = {
   loop: true,
@@ -21,7 +23,15 @@ const Login = () => {
           <Lottie options={defaultOptions}/>
         </div>
         <div className={styles.loginBox}>
-          hola
+          <div className={styles.internBox}>
+            <div>
+              <Typography component="h1" className={styles.title}>YAC</Typography>
+              <Typography component="h2" className={styles.subtitle}>Yet Another Chat</Typography>
+            </div>
+            <div className={styles.loginFormContainer}>
+              <LoginForm/>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

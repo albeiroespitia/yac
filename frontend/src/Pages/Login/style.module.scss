@@ -13,5 +13,31 @@
 
   .loginBox{
     width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .internBox{
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      .loginFormContainer{
+        width: 100%;
+      }
+
+      .title{
+        font-size: 4rem;
+        color: #230053;
+        line-height: 1.2;
+      }
+
+      .subtitle{
+        font-size: 2rem;
+        color: #230053;
+      }
+    }
   }
 }

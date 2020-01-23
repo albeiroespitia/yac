@@ -1,0 +1,19 @@
+.container{
+  width: 100%;
+
+  .nickname{
+    width: 100%;
+  }
+
+  .loginButton{
+    width: 100%;
+    background-color: #7800F2;
+    color: #FFF;
+    margin-top: 2em;
+    padding: .7em 0;
+  }
+
+  .loginButton:hover{
+    background-color: #7800F2;
+  }
+}
