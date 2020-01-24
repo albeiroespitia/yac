@@ -3,13 +3,15 @@ import { login, signup } from '../../Services/Session'
 import actions from './actions'
 
 export function* LOGIN({ payload }) {
-  const { nickname } = payload
+	yield put({type: 'user/SET_STATE',payload: {loadingRequest: true}})
+  const { nickname, history } = payload
 
   try {
     const response = yield call(login, nickname)
 		const expireTime = new Date();
     expireTime.setSeconds(expireTime.getSeconds()+response.data.expire)
     document.cookie = `__tw__=${response.data.token}; expires=${expireTime};`;
+		history.push('/chat')
   } catch (error) {
 		if(error.response.status === 401){
 			yield put({
@@ -22,9 +24,11 @@ export function* LOGIN({ payload }) {
 			})
 		}
   }
+	yield put({type: 'user/SET_STATE',payload: {loadingRequest: false}})
 }
 
 export function* SIGN_UP({ payload }) {
+	yield put({type: 'user/SET_STATE',payload: {loadingRequest: true}})
   const { userData, history } = payload
   try {
     yield call(signup, userData)
@@ -51,6 +55,12 @@ export function* SIGN_UP({ payload }) {
 			})
 		}
   }
+	yield put({type: 'user/SET_STATE',payload: {loadingRequest: false}})
+}
+
+export function* LOGOUT() {
+  //deleteCookie("__tw__")
+  yield put({ type: 'user/RESET_APP' })
 }
 
 export default function* rootSaga() {

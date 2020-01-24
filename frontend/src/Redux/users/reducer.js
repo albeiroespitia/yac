@@ -1,6 +1,7 @@
 import actions from './actions'
 
 const initialState = {
+	loadingRequest: false
 }
 
 export default function userReducer(state = initialState, action) {

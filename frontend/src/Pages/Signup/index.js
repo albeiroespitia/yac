@@ -5,6 +5,8 @@ import Lottie from 'react-lottie';
 import * as animationData from '../../assets/14285-riding-slider-scooter.json'
 import {Typography} from '@material-ui/core'
 import SignupForm from '../../Components/SignupForm'
+import animation from '../../assets/27-loading.json'
+import { useSelector } from 'react-redux'
 
 const defaultOptions = {
   loop: true,
@@ -16,6 +18,8 @@ const defaultOptions = {
 };
 
 const Signup = () => {
+	const loadingRequest = useSelector(state => state.users.loadingRequest)
+
   return(
     <Layout>
       <div className={styles.container}>
@@ -34,6 +38,28 @@ const Signup = () => {
           </div>
         </div>
       </div>
+
+			{
+				loadingRequest ? (
+					<div className='loottieLoadingAnimation'>
+						<Lottie
+							options={{
+								animationData: animation
+							}}
+							style={{
+								position: 'fixed',
+								left: '50%',
+								zIndex: 1000,
+								background: 'rgba(0,0,0,0.2)',
+								transform: 'translateX(-50%) translateY(-50%)',
+								top: '50%'
+							}}
+						/>
+					</div>
+				):(
+					null
+				)
+			}
     </Layout>
   )
 }
