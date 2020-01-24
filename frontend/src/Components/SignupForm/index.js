@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom'
 import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio  } from '@material-ui/core'
 import styles from './style.module.scss'
 import { useDispatch } from 'react-redux'
+import { withRouter } from "react-router-dom";
 
-const SignupForm = () => {
+const SignupForm = ({history}) => {
 	const dispatch = useDispatch()
 
 	const [userData, setUsetData] = useState({
@@ -23,7 +24,7 @@ const SignupForm = () => {
 		if((/\S/.test(userData.nickname)) && (/\S/.test(userData.gender))){
 			dispatch({
 				type:'user/SIGN_UP',
-				payload:{ userData }
+				payload:{ userData, history }
 			})
 		}else{
 			dispatch({
@@ -56,4 +57,4 @@ const SignupForm = () => {
   )
 }
 
-export default SignupForm
+export default withRouter(SignupForm);

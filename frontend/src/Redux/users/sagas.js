@@ -20,9 +20,19 @@ export function* LOGIN({ payload }) {
 }
 
 export function* SIGN_UP({ payload }) {
-  const { userData } = payload
+  const { userData, history } = payload
   try {
     yield call(signup, userData)
+		history.push('/login')
+
+		yield put({
+			type:'helper/SNACKBAR',
+			payload:{
+				isSnackVisible: true,
+				text: 'Account created, login with your nickname',
+				color: '#43a047'
+			}
+		})
 
   } catch (error) {
 		if(error.response.status === 409){
