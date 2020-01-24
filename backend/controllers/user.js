@@ -1,4 +1,5 @@
 const db = require("../firebase");
+const jwt = require('jsonwebtoken')
 
 
 async function signup (req, res) {
@@ -25,8 +26,17 @@ async function login (req, res) {
 		const querySnapshot = await db.collection('users').where("nickname", "==", user.nickname).get()
 		if(querySnapshot.empty){
 			res.status(401).send("Empty")
+			return
 		}
-		res.status(200).send(querySnapshot.docs[0].data())
+
+		const tokenData = {
+			nickname: user.nickname
+		}
+
+		const token = jwt.sign(tokenData, process.env.JWT_SECRET, {
+			 expiresIn: 60 * 60 * 24
+		})
+		res.status(200).send({token, expire: 60 * 60 * 24})
 	}catch(e){
 		res.status(500).send(e)
 	}
