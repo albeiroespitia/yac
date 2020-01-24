@@ -1,9 +1,8 @@
 import React,{ useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import { TextField, Button, Typography } from '@material-ui/core'
 import styles from './style.module.scss'
 import { useDispatch } from 'react-redux'
-import { withRouter } from "react-router-dom";
 
 const LoginForm = ({history}) => {
 	const dispatch = useDispatch()

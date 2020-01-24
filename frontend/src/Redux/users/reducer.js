@@ -1,7 +1,8 @@
 import actions from './actions'
 
 const initialState = {
-	loadingRequest: false
+	loadingRequest: false,
+	isLogged: false
 }
 
 export default function userReducer(state = initialState, action) {
@@ -9,6 +10,7 @@ export default function userReducer(state = initialState, action) {
     case actions.RESET_APP:
       return initialState
     case actions.SET_STATE:
+		console.log(action)
       return { ...state, ...action.payload }
     default:
       return state

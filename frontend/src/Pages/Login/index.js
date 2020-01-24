@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './style.module.scss'
 import Layout from '../../Layout'
 import Lottie from 'react-lottie';
@@ -17,7 +17,7 @@ const defaultOptions = {
   }
 };
 
-const Login = () => {
+const Login = ({history}) => {
 	const loadingRequest = useSelector(state => state.users.loadingRequest)
 
   return(

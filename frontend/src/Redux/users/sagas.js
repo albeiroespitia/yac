@@ -1,5 +1,6 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects'
-import { login, signup } from '../../Services/Session'
+import { login, signup, checkLogin } from '../../Services/Session'
+import { getCookie, deleteCookie } from '../../Services/Cookies'
 import actions from './actions'
 
 export function* LOGIN({ payload }) {
@@ -63,8 +64,30 @@ export function* LOGOUT() {
   yield put({ type: 'user/RESET_APP' })
 }
 
+function* getActualSession(){
+  const token = getCookie("__tw__");
+  if(token != null){
+    try{
+      const response = yield call(checkLogin, token)
+      const data = response.userData
+      yield put({
+        type: 'user/SET_STATE',
+        payload: {
+          nickname: data.nickname,
+          gender: data.gender,
+					avatar: data.avatar,
+          isLogged: true,
+        },
+      })
+    }catch(e){
+      deleteCookie("__tw__")
+    }
+  }
+}
+
 export default function* rootSaga() {
   yield all([
+		getActualSession(),
     takeLatest(actions.LOGIN, LOGIN),
     takeLatest(actions.SIGN_UP, SIGN_UP),
   ])
