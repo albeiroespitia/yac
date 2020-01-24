@@ -7,3 +7,4 @@ frontend/.env-cmdrc
 backend/node_modules
 backend/package-lock.json
 backend/.env-cmdrc
+backend/serviceAccountKey.json
