@@ -1,12 +1,14 @@
 const db = require("../firebase");
 const jwt = require('jsonwebtoken')
 
+const maleAvatars = ['boy.svg','man.svg','man-1.svg','man-2.svg']
+const femaleAvatars = ['girl.svg','girl-1.svg','girl-2.svg','girl-3.svg']
 
 async function signup (req, res) {
   const user = {
     nickname: req.body.nickname,
     gender: req.body.gender,
-    avatar: req.body.avatar
+    avatar: req.body.gender == 'male' ? (maleAvatars[Math.floor(Math.random() * 4)]) : (femaleAvatars[Math.floor(Math.random() * 4)])
   }
 
 	try{

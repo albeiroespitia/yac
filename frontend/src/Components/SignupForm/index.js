@@ -47,8 +47,8 @@ const SignupForm = () => {
         className={styles.nickname}
       />
       <RadioGroup className={styles.radioContainer} name="gender" onChange={handleUser} value={userData.gender}>
-          <FormControlLabel value="0" control={<Radio />} label="Male" />
-          <FormControlLabel value="1" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
       </RadioGroup>
       <Button variant="contained" className={styles.loginButton} onClick={handleSignup}> Sign up </Button>
       <Typography component="p" className={styles.signupText}> Already have an account? <Link to="/login" className={styles.signupLink}>Login</Link> </Typography>
