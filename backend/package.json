@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+		"start": "npm run start:dev",
+    "start:dev": "env-cmd -e development node index.js",
+    "start:prod": "env-cmd -e production node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "env-cmd": "^10.0.1",
     "express": "^4.17.1",
     "firebase-admin": "^8.9.2"
   }
