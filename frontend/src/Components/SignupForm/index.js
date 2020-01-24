@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio  } from '@material-ui/core'
 import styles from './style.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 const SignupForm = () => {
 	const dispatch = useDispatch()
@@ -21,7 +21,10 @@ const SignupForm = () => {
 
 	const handleSignup = () => {
 		if((/\S/.test(userData.nickname)) && (/\S/.test(userData.gender))){
-			alert("Pasado")
+			dispatch({
+				type:'user/SIGN_UP',
+				payload:{ userData }
+			})
 		}else{
 			dispatch({
 				type:'helper/SNACKBAR',

@@ -25,6 +25,7 @@ export function* SIGN_UP({ payload }) {
     yield call(signup, userData)
 
   } catch (error) { // If signup failed
+		console.log(error)
     // Implement your error logic
   }
 }

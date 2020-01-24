@@ -27,7 +27,7 @@ const SnackBar = () => {
 		 	autoHideDuration={4000}>
 				<>
 					{
-						snackData.color == '#43a047' ? (
+						snackData.color === '#43a047' ? (
 							<SnackbarContent
 								className={styles.snackbarSuccess}
 								message={
