@@ -1,19 +1,20 @@
-const { admin } = require("../firebase");
-const db = admin.database()
+const db = require("../firebase");
 
 
-function signup (req, res) {
-/*  const user = new User({
-    email: req.body.email,
-    displayName: req.body.displayName,
-    password: req.body.password
-  })
+async function signup (req, res) {
+  const user = {
+    nickname: req.body.nickname,
+    gender: req.body.gender,
+    avatar: req.body.avatar
+  }
 
-  user.save((err) => {
-    if (err) return res.status(500).send({ message: `Error al crear el usuario: ${err}` })
-
-    return res.status(201).send({ token: service.createToken(user) })
-  })*/
+	try{
+		const docRef = await db.collection('users').doc().set(user)
+		console.log(docRef)
+		res.status(200).send(docRef)
+	}catch(e){
+		res.status(500).send(e)
+	}
 }
 
 module.exports = {
