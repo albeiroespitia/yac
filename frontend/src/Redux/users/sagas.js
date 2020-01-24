@@ -1,12 +1,12 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects'
-import { login, signup } from '../../services/Session'
+import { login, signup } from '../../Services/Session'
 import actions from './actions'
 
 export function* LOGIN({ payload }) {
   const { nickname } = payload
 
   try {
-    const response = yield call(login, email, password)
+    const response = yield call(login, nickname)
 
 	  yield put({
 			type: 'session/SET_STATE',
@@ -24,9 +24,17 @@ export function* SIGN_UP({ payload }) {
   try {
     yield call(signup, userData)
 
-  } catch (error) { // If signup failed
-		console.log(error)
-    // Implement your error logic
+  } catch (error) {
+		if(error.response.status === 409){
+			yield put({
+				type:'helper/SNACKBAR',
+				payload:{
+					isSnackVisible: true,
+					text: 'Nickname already taken',
+					color: '#d32f2f'
+				}
+			})
+		}
   }
 }
 

@@ -3,7 +3,7 @@ import axios from 'axios'
 export async function login(nickname) {
   let response = await axios({
 	  method: 'POST',
-	  url: `${process.env.API_URL}/login`,
+	  url: `${process.env.REACT_APP_API_URL}/login`,
 	  data: {
 		  nickname
 	  },
@@ -18,7 +18,7 @@ export async function login(nickname) {
 export async function signup(userData) {
   let response = await axios({
 	  method: 'POST',
-	  url: `${process.env.API_URL}/signup`,
+	  url: `${process.env.REACT_APP_API_URL}/signup`,
 	  data: userData,
 	  headers:{
 		  'Content-Type': 'application/json'
