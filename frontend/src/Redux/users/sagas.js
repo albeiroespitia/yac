@@ -7,15 +7,20 @@ export function* LOGIN({ payload }) {
 
   try {
     const response = yield call(login, nickname)
-
-	  yield put({
-			type: 'session/SET_STATE',
-			payload: {
-				userId: response.userId,
-			},
-		})
-  } catch (error) {  // If login failed
-	// Implement your error logic
+		const expireTime = new Date();
+    expireTime.setSeconds(expireTime.getSeconds()+response.data.expire)
+    document.cookie = `__tw__=${response.data.token}; expires=${expireTime};`;
+  } catch (error) {
+		if(error.response.status === 401){
+			yield put({
+				type:'helper/SNACKBAR',
+				payload:{
+					isSnackVisible: true,
+					text: "Nickname doesn't exist, please create an account",
+					color: '#d32f2f'
+				}
+			})
+		}
   }
 }
 
