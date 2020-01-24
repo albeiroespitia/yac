@@ -3,3 +3,6 @@ frontend/build
 frontend/npm-debug.log*
 frontend/package-lock.json
 frontend/.env-cmdrc
+
+backend/node_modules
+backend/package-lock.json
