@@ -2,11 +2,11 @@ import { all, takeLatest, put } from 'redux-saga/effects'
 import actions from './actions'
 
 export function* SNACKBAR({ payload }) {
-  const { text, color } = payload
+  const { text, color, isSnackVisible } = payload
 
   yield put({
 		type: 'helper/SET_STATE',
-		payload: {text,color},
+		payload: {text, color, isSnackVisible},
 	})
 }
 

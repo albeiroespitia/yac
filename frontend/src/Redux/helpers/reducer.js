@@ -2,7 +2,8 @@ import actions from './actions'
 
 const initialState = {
 	text: '',
-	color: ''
+	color: '',
+	isSnackVisible: false
 }
 
 export default function helperReducer(state = initialState, action) {
@@ -14,4 +15,4 @@ export default function helperReducer(state = initialState, action) {
     default:
       return state
   }
-}s
+}

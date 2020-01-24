@@ -2,8 +2,11 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio  } from '@material-ui/core'
 import styles from './style.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
 
 const SignupForm = () => {
+	const dispatch = useDispatch()
+
 	const [userData, setUsetData] = useState({
 		nickname: '',
 		gender: ''
@@ -20,7 +23,14 @@ const SignupForm = () => {
 		if((/\S/.test(userData.nickname)) && (/\S/.test(userData.gender))){
 			alert("Pasado")
 		}else{
-			
+			dispatch({
+				type:'helper/SNACKBAR',
+				payload:{
+					isSnackVisible: true,
+					text: 'All fields must be filled out',
+					color: '#d32f2f'
+				}
+			})
 		}
 	}
 
