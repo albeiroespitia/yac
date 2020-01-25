@@ -18,7 +18,7 @@ const defaultOptions = {
 };
 
 const Login = ({history}) => {
-	const loadingRequest = useSelector(state => state.users.loadingRequest)
+	const loadingRequest = useSelector(state => state.user.loadingRequest)
 
   return(
     <Layout>

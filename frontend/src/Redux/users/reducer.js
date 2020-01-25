@@ -10,7 +10,6 @@ export default function userReducer(state = initialState, action) {
     case actions.RESET_APP:
       return initialState
     case actions.SET_STATE:
-		console.log(action)
       return { ...state, ...action.payload }
     default:
       return state

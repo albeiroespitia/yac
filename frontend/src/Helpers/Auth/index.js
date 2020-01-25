@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const Auth = ({history}) => {
-	const isLogged = useSelector(state => state.users.isLogged)
+	const isLogged = useSelector(state => state.user.isLogged)
 
 	useEffect(()=>{
 		if(isLogged){
