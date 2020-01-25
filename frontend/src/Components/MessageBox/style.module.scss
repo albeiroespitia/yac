@@ -1,0 +1,36 @@
+.container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	width: 90%;
+	margin: 1em auto;
+
+	img{
+		width: 8%;
+	}
+
+	.messageContainer{
+		margin: 1em;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+
+		.textContainer{
+			border-radius: .5em;
+			background-color: #DFE0E4;
+			padding: 1em;
+
+			.message{
+				color: #2F2F30;
+			}
+		}
+
+		.dateMessage{
+			font-size: .8rem;
+			margin-top: .2em;
+			color: #939699;
+		}
+	}
+}
