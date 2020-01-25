@@ -18,9 +18,14 @@ function connect() {
 					tempArr[i] = {
 						message: messages[i]._fieldsProto.message.stringValue,
 						sender: messages[i]._fieldsProto.sender.stringValue,
-						date: messages[i]._fieldsProto.date.timestampValue
+						date: new Date(messages[i]._fieldsProto.date.timestampValue.seconds*1000)
 					}
 				}
+
+				tempArr.sort(function(a,b){
+				  return a.date - b.date;
+				});
+
 				store.dispatch({
 					type: 'message/SET_STATE',
 					payload: {allMessages: tempArr}

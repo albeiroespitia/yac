@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const MessageBox = ({test, message, sender, date}) => {
 	const user = useSelector(state => state.user)
-
+	console.log(date)
 	return(
 		<>
 			{
