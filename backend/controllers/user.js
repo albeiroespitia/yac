@@ -8,6 +8,7 @@ async function signup (req, res) {
   const user = {
     nickname: req.body.nickname,
     gender: req.body.gender,
+		nicknameTLC: req.body.nickname.toLowerCase(),
     avatar: req.body.gender == 'male' ? (maleAvatars[Math.floor(Math.random() * 4)]) : (femaleAvatars[Math.floor(Math.random() * 4)])
   }
 
@@ -25,7 +26,7 @@ async function login (req, res) {
   }
 
 	try{
-		const querySnapshot = await db.collection('users').where("nickname", "==", user.nickname).get()
+		const querySnapshot = await db.collection('users').where("nicknameTLC", "==", user.nickname.toLowerCase()).get()
 		if(querySnapshot.empty){
 			res.status(401).send("Empty")
 			return

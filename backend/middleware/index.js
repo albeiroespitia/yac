@@ -3,8 +3,7 @@ const db = require("../firebase");
 async function checkNickname(req,res,next){
 
 	try{
-		const querySnapshot = await db.collection('users').where("nickname", "==", req.body.nickname).get()
-
+		const querySnapshot = await db.collection('users').where("nicknameTLC", "==", req.body.nickname.toLowerCase()).get()
 		if(querySnapshot.empty){
 			next()
 		}else{
