@@ -2,10 +2,12 @@ import React from 'react'
 import styles from './style.module.scss'
 import {TextField, Typography} from '@material-ui/core'
 import { useSelector } from 'react-redux'
+import moment from 'moment'
 
 const MessageBox = ({test, message, sender, date}) => {
 	const user = useSelector(state => state.user)
-	console.log(date)
+	const formattedDate = moment(date).calendar();
+
 	return(
 		<>
 			{
@@ -16,7 +18,7 @@ const MessageBox = ({test, message, sender, date}) => {
 							<div className={styles.textContainer} style={{backgroundColor:'#7E00C5'}}>
 								<Typography component="p" className={styles.message} style={{color:'#FFF'}}>{message}</Typography>
 							</div>
-							<Typography component="span" className={styles.dateMessage} style={{alignSelf:'flex-start'}}>Yesterday 12:55 AM</Typography>
+							<Typography component="span" className={styles.dateMessage} style={{alignSelf:'flex-start'}}>{formattedDate}</Typography>
 						</div>
 						<img src={require('../../assets/avatars/boy.svg')}/>
 					</div>
@@ -28,7 +30,7 @@ const MessageBox = ({test, message, sender, date}) => {
 							<div className={styles.textContainer}>
 								<Typography component="p" className={styles.message}>{message}</Typography>
 							</div>
-							<Typography component="span" className={styles.dateMessage}>Yesterday 12:55 AM</Typography>
+							<Typography component="span" className={styles.dateMessage}>{formattedDate}</Typography>
 						</div>
 					</div>
 				)
