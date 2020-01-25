@@ -8,6 +8,7 @@ const MessageBox = () => {
 		<div className={styles.container}>
 			<img src={require('../../assets/avatars/boy.svg')}/>
 			<div className={styles.messageContainer}>
+				<Typography component="span" className={styles.person}>Albeiro</Typography>
 				<div className={styles.textContainer}>
 					<Typography component="p" className={styles.message}>Hi Star. How is it going? :D</Typography>
 				</div>
