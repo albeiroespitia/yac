@@ -5,6 +5,7 @@ const initialState = {
 }
 
 export default function messageReducer(state = initialState, action) {
+	console.log(action)
   switch (action.type) {
     case actions.RESET_APP:
       return initialState

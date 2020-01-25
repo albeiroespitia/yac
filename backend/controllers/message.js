@@ -1,20 +1,23 @@
 const db = require("../firebase");
+const mdlw = require('../middleware')
 
-async function send(req,res){
-	let message = {
-		message: req.body.message,
-		date: new Date(),
-		sender: res.locals.userData.nickname
-	}
-
-	console.log(message)
-
+async function send(data){
 	try{
-		const docRef = await db.collection('messages').doc().set(message)
-		res.status(200).send(docRef)
+		const userData = await mdlw.checkLogin(data.__tw__)
+		let message = {
+			message: data.message,
+			date: new Date(),
+			sender: userData.nickname
+		}
+
+		try{
+			const docRef = await db.collection('messages').doc().set(message)
+		}catch(e){
+			console.log(e)
+			return false
+		}
 	}catch(e){
-		console.log(e	)
-		res.status(500).send(e)
+		return false
 	}
 }
 

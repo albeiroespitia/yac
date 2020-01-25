@@ -43,6 +43,7 @@ const InputBar = () => {
 				type:'message/SEND',
 				payload:{ message }
 			})
+			setMessage('')
 		}
 	}
 

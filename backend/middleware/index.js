@@ -15,28 +15,49 @@ async function checkNickname(req,res,next){
 	}
 }
 
-function checkLogin(req,res, next){
-  jwt.verify(req.headers.authorization, process.env.JWT_SECRET, function(err, decoded) {
-    if(err) res.status(401).send(err);
+const checkLogin = (token) => {
+	return new Promise((resolve,reject)=>{
+		jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
+	    if(err) reject('fail')
+	    db.collection('users').where("nicknameTLC", "==", decoded.nickname.toLowerCase()).get()
+	  		.then(snapshot => {
+	  			if (snapshot.empty) {
+	  				reject('fail')
+	  			}
+
+	  			snapshot.forEach(doc => {
+						resolve(doc.data())
+						//return doc.data()
+	        })
+	      })
+	      .catch(err => {
+	        console.log('Error getting documents', err);
+	        reject('fail')
+	  		})
+	  });
+	})
+}
+
+/*function checkLogin(token){
+  jwt.verify(token, process.env.JWT_SECRET, function(err, decoded) {
+    if(err) return false
     db.collection('users').where("nicknameTLC", "==", decoded.nickname.toLowerCase()).get()
   		.then(snapshot => {
   			if (snapshot.empty) {
-  				return res.status(401).send(snapshot.empty)
+  				return false
   			}
 
   			snapshot.forEach(doc => {
-					res.locals.userData = doc.data()
 					console.log(doc.data())
-					next()
+					return doc.data()
         })
-        return
       })
       .catch(err => {
         console.log('Error getting documents', err);
-        res.status(500).send(err);
+        return false
   		})
   });
-}
+}*/
 
 module.exports = {
 	checkNickname,
