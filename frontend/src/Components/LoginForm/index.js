@@ -18,6 +18,12 @@ const LoginForm = ({history}) => {
 		})
 	}
 
+	const keyPress = (e) => {
+      if(e.keyCode == 13){
+        handleLogin()
+      }
+   }
+
 	const handleLogin = () => {
 		if(/\S/.test(userData.nickname)){
 			dispatch({
@@ -42,6 +48,7 @@ const LoginForm = ({history}) => {
         label="Nickname"
         className={styles.nickname}
 				name="nickname"
+				onKeyDown={keyPress}
 				onChange={handleUser}
 				value={userData.nickname}
       />

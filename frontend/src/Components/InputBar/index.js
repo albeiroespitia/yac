@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {TextField} from '@material-ui/core'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import styles from './style.module.scss'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const theme = createMuiTheme({
   overrides: {
@@ -29,12 +29,41 @@ const theme = createMuiTheme({
 });
 
 const InputBar = () => {
+	const dispatch = useDispatch()
+	const [message, setMessage] = useState('')
 	const user = useSelector(state => state.user)
+
+	const handleMessage = (event) => {
+		setMessage(event.target.value)
+	}
+
+	const sendMessage = () => {
+		if(/\S/.test(message)){
+			dispatch({
+				type:'message/SEND',
+				payload:{ message }
+			})
+		}
+	}
+
+	const keyPress = (e) => {
+			if(e.keyCode == 13){
+				sendMessage()
+			}
+	 }
+	 console.log(user)
 
 	return(
 		<div className={styles.container}>
 			<ThemeProvider theme={theme}>
-				<TextField placeholder={`Hey ${user.nickname}. Type something to send...`} className={styles.chatTextField} classes={{root:styles.root}}/>
+				<TextField
+					placeholder={`Hey ${user.nickname}. Type something to send...`}
+					className={styles.chatTextField}
+					onChange={handleMessage}
+					value={message}
+					classes={{root:styles.root}}
+					onKeyDown={keyPress}
+				/>
 			</ThemeProvider>
 		</div>
 	)

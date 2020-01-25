@@ -12,6 +12,7 @@ export function* LOGIN({ payload }) {
 		const expireTime = new Date();
     expireTime.setSeconds(expireTime.getSeconds()+response.data.expire)
     document.cookie = `__tw__=${response.data.token}; expires=${expireTime};`;
+		yield getActualSession()
 		history.push('/chat')
   } catch (error) {
 		if(error.response.status === 401){
@@ -65,7 +66,9 @@ export function* LOGOUT() {
 }
 
 function* getActualSession(){
+	console.log("entro")
   const token = getCookie("__tw__");
+	console.log(token)
   if(token != null){
     try{
       const response = yield call(checkLogin, token)

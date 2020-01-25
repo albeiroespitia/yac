@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 function checkLogin(req,res){
   jwt.verify(req.headers.authorization, process.env.JWT_SECRET, function(err, decoded) {
     if(err) res.status(401).send(err);
-    db.collection('users').where("nickname", "==", decoded.nickname).get()
+    db.collection('users').where("nicknameTLC", "==", decoded.nickname.toLowerCase()).get()
   		.then(snapshot => {
   			if (snapshot.empty) {
   				return res.status(401).send(snapshot.empty)
