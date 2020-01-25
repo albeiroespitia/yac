@@ -1,11 +1,10 @@
 import actions from './actions'
 
 const initialState = {
-	allMessages: []
+	allMessages: false
 }
 
 export default function messageReducer(state = initialState, action) {
-	console.log(action)
   switch (action.type) {
     case actions.RESET_APP:
       return initialState

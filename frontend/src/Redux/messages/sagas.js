@@ -22,7 +22,7 @@ function connect() {
 					}
 				}
 				store.dispatch({
-					type: 'messages/SET_STATE',
+					type: 'message/SET_STATE',
 					payload: {allMessages: tempArr}
 				})
 			})
