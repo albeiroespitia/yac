@@ -6,6 +6,14 @@
 	height: 100%;
 	flex-direction: column;
 
+	.logOutIcon{
+		position: absolute;
+		top: 0;
+		right: -70px;
+		color: #FFF;
+		font-size: 3em;
+	}
+
 	.chatBox{
 		height: 90%;
 		width: 100%;

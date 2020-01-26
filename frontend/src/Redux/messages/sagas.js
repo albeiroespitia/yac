@@ -1,6 +1,5 @@
 import { all, takeLatest, put, call } from 'redux-saga/effects'
 import { channel } from 'redux-saga'
-import { sendMessage, getMessages } from '../../Services/Messages'
 import actions from './actions'
 import { getCookie, deleteCookie } from '../../Services/Cookies'
 import io from 'socket.io-client';
@@ -16,6 +15,7 @@ function connect() {
 				let tempArr = []
 				for(let i=0;i<messages.length;i++){
 					tempArr[i] = {
+						avatar: messages[i]._fieldsProto.avatar.stringValue,
 						message: messages[i]._fieldsProto.message.stringValue,
 						sender: messages[i]._fieldsProto.sender.stringValue,
 						date: new Date(messages[i]._fieldsProto.date.timestampValue.seconds*1000)

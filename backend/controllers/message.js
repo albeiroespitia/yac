@@ -7,7 +7,8 @@ async function send(data){
 		let message = {
 			message: data.message,
 			date: new Date(),
-			sender: userData.nickname
+			sender: userData.nickname,
+			avatar: userData.avatar
 		}
 
 		try{

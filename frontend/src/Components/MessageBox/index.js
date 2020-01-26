@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import moment from 'moment'
 import searchYoutube from 'youtube-api-v3-search';
 
-const MessageBox = ({test, message, sender, date}) => {
+const MessageBox = ({test, message, sender, avatar, date}) => {
 	const user = useSelector(state => state.user)
 	const [formattedMessage, setFormattedMessage] = useState(message)
 	const formattedDate = moment(date).calendar();
@@ -43,11 +43,11 @@ const MessageBox = ({test, message, sender, date}) => {
 							</div>
 							<Typography component="span" className={styles.dateMessage} style={{alignSelf:'flex-start'}}>{formattedDate}</Typography>
 						</div>
-						<img src={require('../../assets/avatars/boy.svg')}/>
+						<img src={require(`../../assets/avatars/${avatar}`)}/>
 					</div>
 				):(
 					<div className={styles.container}>
-						<img src={require('../../assets/avatars/boy.svg')}/>
+						<img src={require(`../../assets/avatars/${avatar}`)}/>
 						<div className={styles.messageContainer}>
 							<Typography component="span" className={styles.person}>{sender}</Typography>
 							<div className={styles.textContainer}>
