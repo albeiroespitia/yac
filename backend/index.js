@@ -7,6 +7,6 @@ io.on('connection', function(socket){
 	initSocket(socket)
 });
 
-server.listen(process.env.PORT, ()=>{
-    console.log(`Escuchando en el puerto ${process.env.PORT}...`)
+server.listen(process.env.PORT || 3000, ()=>{
+    console.log(`Escuchando en el puerto ${process.env.PORT || 3000}...`)
 })
