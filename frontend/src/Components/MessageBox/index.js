@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import styles from './style.module.scss'
-import {TextField, Typography} from '@material-ui/core'
+import {Typography} from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
 import searchYoutube from 'youtube-api-v3-search';
@@ -20,7 +20,7 @@ const MessageBox = ({test, message, sender, avatar, date}) => {
 					"type": "video",
 					"videoEmbeddable": "true"
 				});
-				setFormattedMessage(<iframe allowfullscreen="allowfullscreen" src={`https://www.youtube.com/embed/${result.items[0].id.videoId}`}></iframe>)
+				setFormattedMessage(<iframe title={`${message}${user.nickname}`} allowfullscreen="allowfullscreen" src={`https://www.youtube.com/embed/${result.items[0].id.videoId}`}></iframe>)
 			}catch(e){
 				console.log(e)
 			}
@@ -43,11 +43,11 @@ const MessageBox = ({test, message, sender, avatar, date}) => {
 							</div>
 							<Typography component="span" className={styles.dateMessage} style={{alignSelf:'flex-start'}}>{formattedDate}</Typography>
 						</div>
-						<img src={require(`../../assets/avatars/${avatar}`)}/>
+						<img alt='profileImage' src={require(`../../assets/avatars/${avatar}`)}/>
 					</div>
 				):(
 					<div className={styles.container}>
-						<img src={require(`../../assets/avatars/${avatar}`)}/>
+						<img alt='profileImage' src={require(`../../assets/avatars/${avatar}`)}/>
 						<div className={styles.messageContainer}>
 							<Typography component="span" className={styles.person}>{sender}</Typography>
 							<div className={styles.textContainer}>

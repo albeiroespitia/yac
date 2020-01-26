@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 import InputBar from '../../Components/InputBar'
 import MessageBox from '../../Components/MessageBox'
 import { useSelector } from 'react-redux'
-import {Typography, Button} from '@material-ui/core'
+import {Button} from '@material-ui/core'
 import { IoIosLogOut } from "react-icons/io";
 import { withRouter } from "react-router-dom";
 import {deleteCookie} from '../../Services/Cookies'

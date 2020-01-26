@@ -11,7 +11,7 @@ const Auth = ({history}) => {
 		}else{
 			history.push('/login')
 		}
-	},[isLogged])
+	},[isLogged, history])
 
 	return <></>
 }

@@ -1,7 +1,6 @@
-import { all, takeLatest, put, call } from 'redux-saga/effects'
-import { channel } from 'redux-saga'
+import { all, takeLatest, call } from 'redux-saga/effects'
 import actions from './actions'
-import { getCookie, deleteCookie } from '../../Services/Cookies'
+import { getCookie } from '../../Services/Cookies'
 import io from 'socket.io-client';
 import store from '../store'
 let socket;
@@ -42,7 +41,7 @@ function* initSockets(){
 }
 
 export function* SEND({ payload }) {
-  const { message, history } = payload
+  const { message } = payload
 	socket.emit('sendMessage', { message, __tw__: getCookie("__tw__") });
 }
 
